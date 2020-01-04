@@ -6,14 +6,26 @@
 
 
 void Algorithm::defaultEvolvePopulation(Population *population, int newInd) {
+    int selected, toMutation = int((population->getSize()) * 0.3);
+
     for (int i = 0; i < newInd; i++) {
         population->appendIndividual(defaultCrossover(tournament(population), tournament(population)));
         population->setIndividual(population->getSize() - 1,
-                                  population->getIndividual(population->getSize() - 1)->TS(10e3));
+                                  population->getIndividual(population->getSize() - 1)->TS(10e4));
+    }
+
+    for (int i = 0; i < toMutation; i++) {
+        selected = int(random() % population->getSize());
+        if (selected != 0) defaultMutation(population->getIndividual(selected));
     }
 
     population->setIndividual(0, population->getFittest());
     population->getOnly(population->getSize(), newInd);
+}
+
+void Algorithm::defaultMutation(Individual *individual) {
+    for (int i = 0; i < individual->getSize(); i++)
+        if (drand48() < mutationRate) individual->setGene(i);
 }
 
 Individual *Algorithm::defaultCrossover(Individual *individual1, Individual *individual2) {

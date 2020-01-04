@@ -28,7 +28,7 @@ double hybridGeneticAlgorithm(Graph *graph, int timeLimit, int populationSize, i
     auto end = chrono::steady_clock::now();
 
     auto population = new Population(populationSize);
-    population->initPopDefault(graph);
+    population->initPopMixed(graph, int(0.5 * populationSize));
 
     auto *fittest = population->getFittest();
 
@@ -44,16 +44,16 @@ double hybridGeneticAlgorithm(Graph *graph, int timeLimit, int populationSize, i
 
     while (chrono::duration_cast<chrono::seconds>(end - start).count() < timeLimit) {
         Algorithm::defaultEvolvePopulation(population, newIndividuals);
-
-        fittest = population->getFittest();
+        for (int i = 0; i < population->getSize(); i++) cout << population->getIndividual(i)->getFitness() << ", ";
+        cout << endl;
         generations++;
         end = chrono::steady_clock::now();
     }
 
     cout << "The number of generations was " << generations << endl;
     solution << generations << endl;
-    solution << fittest->getFitness() << endl;
-    return fittest->getFitness();
+    solution << population->getIndividual(0)->getFitness() << endl;
+    return population->getIndividual(0)->getFitness();
 }
 
 int main(int argc, const char *argv[]) {

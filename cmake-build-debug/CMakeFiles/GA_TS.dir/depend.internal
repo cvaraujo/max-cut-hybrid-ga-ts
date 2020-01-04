@@ -7,26 +7,26 @@ CMakeFiles/GA_TS.dir/main.cpp.o
  ../include/Includes.h
  ../include/Individual.h
  ../include/Population.h
- /home/carlos/CLionProjects/GeneticAlgorithmMaxCut/main.cpp
+ /home/carlos/CLionProjects/HybridGeneticAlgorithmTS/main.cpp
 CMakeFiles/GA_TS.dir/src/Algorithm.cpp.o
- /home/carlos/CLionProjects/GeneticAlgorithmMaxCut/include/Algorithm.h
- /home/carlos/CLionProjects/GeneticAlgorithmMaxCut/include/Graph.h
- /home/carlos/CLionProjects/GeneticAlgorithmMaxCut/include/Includes.h
- /home/carlos/CLionProjects/GeneticAlgorithmMaxCut/include/Individual.h
- /home/carlos/CLionProjects/GeneticAlgorithmMaxCut/include/Population.h
- /home/carlos/CLionProjects/GeneticAlgorithmMaxCut/src/Algorithm.cpp
+ /home/carlos/CLionProjects/HybridGeneticAlgorithmTS/include/Algorithm.h
+ /home/carlos/CLionProjects/HybridGeneticAlgorithmTS/include/Graph.h
+ /home/carlos/CLionProjects/HybridGeneticAlgorithmTS/include/Includes.h
+ /home/carlos/CLionProjects/HybridGeneticAlgorithmTS/include/Individual.h
+ /home/carlos/CLionProjects/HybridGeneticAlgorithmTS/include/Population.h
+ /home/carlos/CLionProjects/HybridGeneticAlgorithmTS/src/Algorithm.cpp
 CMakeFiles/GA_TS.dir/src/Graph.cpp.o
  ../include/Graph.h
  ../include/Includes.h
- /home/carlos/CLionProjects/GeneticAlgorithmMaxCut/src/Graph.cpp
+ /home/carlos/CLionProjects/HybridGeneticAlgorithmTS/src/Graph.cpp
 CMakeFiles/GA_TS.dir/src/Individual.cpp.o
- /home/carlos/CLionProjects/GeneticAlgorithmMaxCut/include/Graph.h
- /home/carlos/CLionProjects/GeneticAlgorithmMaxCut/include/Includes.h
- /home/carlos/CLionProjects/GeneticAlgorithmMaxCut/include/Individual.h
- /home/carlos/CLionProjects/GeneticAlgorithmMaxCut/src/Individual.cpp
+ /home/carlos/CLionProjects/HybridGeneticAlgorithmTS/include/Graph.h
+ /home/carlos/CLionProjects/HybridGeneticAlgorithmTS/include/Includes.h
+ /home/carlos/CLionProjects/HybridGeneticAlgorithmTS/include/Individual.h
+ /home/carlos/CLionProjects/HybridGeneticAlgorithmTS/src/Individual.cpp
 CMakeFiles/GA_TS.dir/src/Population.cpp.o
- /home/carlos/CLionProjects/GeneticAlgorithmMaxCut/include/Graph.h
- /home/carlos/CLionProjects/GeneticAlgorithmMaxCut/include/Includes.h
- /home/carlos/CLionProjects/GeneticAlgorithmMaxCut/include/Individual.h
- /home/carlos/CLionProjects/GeneticAlgorithmMaxCut/include/Population.h
- /home/carlos/CLionProjects/GeneticAlgorithmMaxCut/src/Population.cpp
+ /home/carlos/CLionProjects/HybridGeneticAlgorithmTS/include/Graph.h
+ /home/carlos/CLionProjects/HybridGeneticAlgorithmTS/include/Includes.h
+ /home/carlos/CLionProjects/HybridGeneticAlgorithmTS/include/Individual.h
+ /home/carlos/CLionProjects/HybridGeneticAlgorithmTS/include/Population.h
+ /home/carlos/CLionProjects/HybridGeneticAlgorithmTS/src/Population.cpp

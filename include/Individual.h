@@ -11,9 +11,10 @@ class Individual {
     vector<int> chg, cx, CL, TL;
     vector<bool> side, gene;
     double fitness;
-    Graph *graph;
 
 public:
+    Graph *graph;
+
     Individual(Graph *graph, bool initialSolution, bool isDefault);
 
     void defaultSolution();
