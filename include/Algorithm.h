@@ -10,24 +10,24 @@
 
 
 class Algorithm {
-    static constexpr double uniformRate = 0.5;
-    static constexpr double mutationRate = 0.1;
-    static const int tournamentSize = 3;
+  static constexpr double uniformRate = 0.5;
+  static constexpr double mutationRate = 0.1;
+  static const int tournamentSize = 3;
 
-    static Individual *defaultCrossover(Individual *individual1, Individual *individual2);
+  static Individual *defaultCrossover(Individual *individual1, Individual *individual2);
+  static Individual *multiParentCrossover(Population *population, int p);
+  static void defaultMutation(Individual *individual);
 
-    static void defaultMutation(Individual *individual);
+  static void constrainedMutation(Individual *individual);
 
-    static void constrainedMutation(Individual *individual);
-
-    static Individual *tournament(Population *population);
+  static Individual *tournament(Population *population);
 
 public:
-    static void defaultEvolvePopulation(Population *population, int newInd);
+  static void defaultEvolvePopulation(Population *population, int newInd);
 
-    static void constrainedEvolvePopulation(Population *population, int newInd);
+  static void constrainedEvolvePopulation(Population *population, int newInd);
 
-    static void hybridEvolvePopulation(Population *population, int newInd);
+  static void hybridEvolvePopulation(Population *population, int newInd);
 
 };
 

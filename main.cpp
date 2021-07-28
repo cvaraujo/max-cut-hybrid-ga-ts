@@ -7,79 +7,78 @@
 #include "../include/Algorithm.h"
 
 void checkSolution(Graph *graph, Individual *individual) {
-    int i, j, objective = 0;
-    for (i = 0; i < graph->getN(); i++) {
-        for (auto e : graph->graph[i]) {
-            j = e.first;
-            if (individual->getGene(i) != individual->getGene(j)) {
-                objective += e.second;
-            }
-        }
+  int i, j, objective = 0;
+  for (i = 0; i < graph->getN(); i++) {
+    for (auto e : graph->graph[i]) {
+      j = e.first;
+      if (individual->getGene(i) != individual->getGene(j)) {
+        objective += e.second;
+      }
     }
-    cout << "Objective made from solution: " << objective / 2 << endl;
+  }
+  cout << "Objective made from solution: " << objective / 2 << endl;
 }
 
-double hybridGeneticAlgorithm(Graph *graph, int timeLimit, int populationSize, int newIndividuals,
-                              const string solutionPath) {
-    ofstream solution;
-    solution.open(solutionPath);
+double hybridGeneticAlgorithm(Graph *graph, int timeLimit, int populationSize, int newIndividuals, const string solutionPath) {
 
-    auto start = chrono::steady_clock::now();
-    auto end = chrono::steady_clock::now();
+  ofstream solution;
+  solution.open(solutionPath);
 
-    auto population = new Population(populationSize);
-    population->initPopMixed(graph, int(0.5 * populationSize));
+  auto start = chrono::steady_clock::now();
+  auto end = chrono::steady_clock::now();
 
-    auto *fittest = population->getFittest();
+  auto population = new Population(populationSize);
+  population->initPopMixed(graph, int(0.2 * populationSize));
 
-    int generations = 0;
+  auto *fittest = population->getFittest();
 
-    cout << "Initial population with size " << populationSize << endl;
-    cout << "Generating " << newIndividuals << " new individuals per generation" << endl;
-    cout << "Running by " << timeLimit << " seconds" << endl;
-    cout << "The fittest individual at 1th generation have " << fittest->getFitness() << " of fitness" << endl;
+  int generations = 0;
 
-    solution << populationSize << " " << newIndividuals << " " << timeLimit << endl;
-    solution << fittest->getFitness() << endl;
+  cout << "Initial population with size " << populationSize << endl;
+  cout << "Generating " << newIndividuals << " new individuals per generation" << endl;
+  cout << "Running by " << timeLimit << " seconds" << endl;
+  cout << "The fittest individual at 1th generation have " << fittest->getFitness() << " of fitness" << endl;
 
-    while (chrono::duration_cast<chrono::seconds>(end - start).count() < timeLimit) {
-        Algorithm::defaultEvolvePopulation(population, newIndividuals);
-        for (int i = 0; i < population->getSize(); i++) cout << population->getIndividual(i)->getFitness() << ", ";
-        cout << endl;
-        generations++;
-        end = chrono::steady_clock::now();
-    }
+  solution << populationSize << " " << newIndividuals << " " << timeLimit << endl;
+  solution << fittest->getFitness() << endl;
 
-    cout << "The number of generations was " << generations << endl;
-    solution << generations << endl;
-    solution << population->getIndividual(0)->getFitness() << endl;
-    return population->getIndividual(0)->getFitness();
+  while (chrono::duration_cast<chrono::seconds>(end - start).count() < timeLimit) {
+    Algorithm::defaultEvolvePopulation(population, newIndividuals);
+    generations++;
+    end = chrono::steady_clock::now();
+  }
+
+  cout << "The number of generations was " << generations << endl;
+  solution << generations << endl;
+  solution << population->getIndividual(0)->getFitness() << endl;
+  return population->getIndividual(0)->getFitness();
 }
 
 int main(int argc, const char *argv[]) {
-    if (argc < 6) {
-        cout << "Wrong number of parameters" << endl;
-        cout << "Usage:.\\GA_TS <population-size> <new-at-generation> "
-                "<time-limit> <instance-file-name> <result-file-name>" << endl;
-        exit(0);
-    } else {
-        srand(time(NULL));
-        srand48(time(NULL));
-        srandom(time(NULL));
-        int time = 0, populationSize = 0, newIndividuals = 0;
-        double solution = 0;
+  if (argc < 6) {
+    cout << "Wrong number of parameters" << endl;
+    cout << "Usage:.\\GA_TS <population-size> <new-at-generation> "
+      "<time-limit> <instance-file-name> <result-file-name>" << endl;
+    exit(0);
+  } else {
+    srand(time(NULL));
+    srand48(time(NULL));
+    srandom(time(NULL));
 
-        stringstream convertTime(argv[3]), convertPopSize(argv[1]), convertNewInd(argv[2]);
+    int time = 0, populationSize = 0, newIndividuals = 0;
+    double solution = 0;
 
-        convertTime >> time;
-        convertPopSize >> populationSize;
-        convertNewInd >> newIndividuals;
+    stringstream convertTime(argv[3]), convertPopSize(argv[1]), convertNewInd(argv[2]);
 
-        auto graph = new Graph(argv[4]);
+    convertTime >> time;
+    convertPopSize >> populationSize;
+    convertNewInd >> newIndividuals;
 
-        solution = hybridGeneticAlgorithm(graph, time, populationSize, newIndividuals, argv[5]);
+    auto graph = new Graph(argv[4]);
 
-        cout << "The fitness of the fittest individual was " << solution << endl;
-    }
-    return 0;
+    solution = hybridGeneticAlgorithm(graph, time, populationSize, newIndividuals, argv[5]);
+
+    cout << "The fitness of the fittest individual was " << solution << endl;
+  }
+  return 0;
 }

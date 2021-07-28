@@ -18,7 +18,7 @@ void Population::initPopMixed(class Graph *graph, int numConst) {
 
     for (int i = 0; i < numDefault; i++)
         population.push_back(new Individual(graph, true, true));
-    
+
     for (int i = 0; i < numConst; i++)
         population.push_back(new Individual(graph, true, false));
 
@@ -50,25 +50,18 @@ Individual *Population::getFittest() {
 }
 
 void Population::getOnly(int popSize, int newInd) {
-    vector<Individual *> aux(population.begin() + (popSize - newInd), population.end());
-    int i, countInserted = 0;
+  sort(population.begin(), population.end(), [](Individual *i1, Individual *i2) { return i1->getFitness() > i2->getFitness(); });
 
-    sort(aux.begin(), aux.end(), [](Individual *i1, Individual *i2) { return i1->getFitness() > i2->getFitness(); });
+  Individual *ind = new Individual(*population[0]);
 
-    population.erase(population.begin() + (popSize - 2 * newInd), population.end());
+  population.erase(population.begin(), population.begin()+newInd-1);
+  population.erase(population.begin() + (popSize - newInd), population.end());
 
-    double lastFitness = 0;
+  population[0] = ind;
 
-    for (i = 0; i < int(aux.size()); i++) {
-        if (aux[i]->getFitness() != lastFitness && aux[i]->getFitness() != aux[0]->getFitness()) {
-            countInserted++, lastFitness = aux[i]->getFitness();
-            population.push_back(aux[i]);
-        }
-    }
+  for(int i = 0; i < newInd; i++)
+    population.push_back(new Individual(population[1]->graph, true, true));
 
-    for (i = 0; i < (newInd - countInserted); i++) {
-        population.push_back(new Individual(population[0]->graph, true, true));
-    }
 }
 
 int Population::getSize() {
